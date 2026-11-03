@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Poonam Lama — Application Security Portfolio</title>
+		<meta
+			name="description"
+			content="Application security portfolio: DAST, SAST, SCA pipelines and LLM/AI security testing." />
+		<style>
+			:root {
+				--bg: #0f1720;
+				--bg-card: #161f2b;
+				--border: #22303f;
+				--border-soft: #1c2733;
+				--text: #e6eaf0;
+				--text-bright: #f4f7fa;
+				--text-dim: #9faebe;
+				--text-dimmer: #8ca0b3;
+				--text-body: #b7c3d1;
+				--text-muted: #cbd5e0;
+				--accent: #5fd4c4;
+				--accent-hover: #8ae6d8;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			body {
+				margin: 0;
+				font-family:
+					-apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+				background: var(--bg);
+				color: var(--text);
+			}
+			a {
+				color: var(--accent);
+				text-decoration: none;
+			}
+			a:hover {
+				color: var(--accent-hover);
+				text-decoration: underline;
+			}
+			::selection {
+				background: #1f8a78;
+				color: var(--bg);
+			}
+
+			nav {
+				width: 100%;
+				padding: 20px 48px;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+				gap: 16px;
+				border-bottom: 1px solid var(--border-soft);
+				position: sticky;
+				top: 0;
+				background: rgba(15, 23, 32, 0.92);
+				backdrop-filter: blur(8px);
+				z-index: 10;
+			}
+			nav .brand {
+				font-weight: 700;
+				font-size: 18px;
+				letter-spacing: 0.3px;
+				color: var(--text-bright);
+			}
+			nav .links {
+				display: flex;
+				gap: 28px;
+				font-size: 15px;
+			}
+			nav .links a {
+				color: var(--text);
+			}
+			nav .links a:hover {
+				color: var(--accent);
+			}
+
+			section,
+			footer {
+				width: 100%;
+				padding: 56px 48px;
+				box-sizing: border-box;
+			}
+
+			.hero {
+				padding: 96px 48px 72px;
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+				max-width: 880px;
+			}
+			.badge {
+				display: inline-block;
+				width: fit-content;
+				font-size: 13px;
+				font-weight: 600;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				color: var(--accent);
+				background: rgba(95, 212, 196, 0.1);
+				border: 1px solid rgba(95, 212, 196, 0.3);
+				border-radius: 999px;
+				padding: 6px 14px;
+			}
+			.hero h1 {
+				margin: 0;
+				font-size: 52px;
+				line-height: 1.1;
+				font-weight: 700;
+				color: var(--text-bright);
+			}
+			.hero p.lede {
+				margin: 0;
+				font-size: 22px;
+				line-height: 1.5;
+				color: var(--text-dim);
+				font-weight: 400;
+			}
+			.btn-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 14px;
+				margin-top: 12px;
+			}
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 11px 20px;
+				border-radius: 8px;
+				font-weight: 600;
+				font-size: 15px;
+			}
+			.btn-primary {
+				background: var(--accent);
+				color: var(--bg);
+			}
+			.btn-primary:hover {
+				background: var(--accent-hover);
+				color: var(--bg);
+				text-decoration: none;
+			}
+			.btn-secondary {
+				border: 1px solid #2c3b4a;
+				color: var(--text);
+			}
+			.btn-secondary:hover {
+				border-color: var(--accent);
+				color: var(--accent);
+				text-decoration: none;
+			}
+
+			.section-label {
+				margin: 0 0 16px;
+				font-size: 14px;
+				font-weight: 700;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				color: var(--accent);
+			}
+			#about {
+				border-top: 1px solid var(--border-soft);
+				max-width: 760px;
+			}
+			#about p {
+				margin: 0;
+				font-size: 18px;
+				line-height: 1.7;
+				color: var(--text-body);
+			}
+			#about .placeholder {
+				color: #e8b86d;
+			}
+
+			#projects {
+				border-top: 1px solid var(--border-soft);
+				padding-bottom: 24px;
+			}
+			.project-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 24px;
+				margin-top: 28px;
+			}
+			@media (max-width: 760px) {
+				.project-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			article.project {
+				padding: 28px;
+				border-radius: 14px;
+				background: var(--bg-card);
+				border: 1px solid var(--border);
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+				min-width: 0;
+			}
+			article.project h3 {
+				margin: 0;
+				font-size: 20px;
+				font-weight: 700;
+				color: var(--text-bright);
+			}
+			article.project .subtitle {
+				margin: 4px 0 0;
+				font-size: 15px;
+				color: var(--text-dimmer);
+			}
+			article.project p.desc {
+				margin: 0;
+				font-size: 15px;
+				line-height: 1.6;
+				color: var(--text-body);
+			}
+			.tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+			}
+			.tag {
+				font-size: 12px;
+				font-weight: 600;
+				padding: 4px 10px;
+				border-radius: 6px;
+				background: rgba(95, 212, 196, 0.08);
+				border: 1px solid rgba(95, 212, 196, 0.25);
+				color: var(--accent);
+			}
+			article.project a.link {
+				margin-top: 4px;
+				font-size: 15px;
+				font-weight: 600;
+			}
+
+			#toolbox {
+				padding: 32px 48px 56px;
+			}
+			.pill-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				margin-top: 16px;
+			}
+			.pill {
+				font-size: 14px;
+				padding: 7px 14px;
+				border-radius: 8px;
+				background: var(--bg-card);
+				border: 1px solid var(--border);
+				color: var(--text-muted);
+			}
+
+			footer {
+				border-top: 1px solid var(--border-soft);
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+				gap: 24px;
+			}
+			footer h2 {
+				margin: 0;
+				font-size: 20px;
+				font-weight: 700;
+				color: var(--text-bright);
+			}
+			footer p {
+				margin: 0;
+				font-size: 15px;
+				color: var(--text-dimmer);
+			}
+			footer .contact-links {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 14px;
+			}
+			footer .contact-links a {
+				font-size: 15px;
+				font-weight: 600;
+			}
+
+			@media (max-width: 600px) {
+				nav,
+				section,
+				footer,
+				.hero {
+					padding-left: 24px;
+					padding-right: 24px;
+				}
+				.hero h1 {
+					font-size: 38px;
+				}
+				.hero p.lede {
+					font-size: 18px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<span class="brand">Poonam Lama</span>
+			<div class="links">
+				<a href="#about">About</a>
+				<a href="#projects">Projects</a>
+				<a href="#contact">Contact</a>
+			</div>
+		</nav>
+
+		<section class="hero">
+			<span class="badge">Application Security</span>
+			<h1>Poonam Lama</h1>
+			<p class="lede">
+				AppSec practitioner building hands-on expertise in DAST, SAST, SCA, and
+				LLM/AI security testing — with a growing interest in full-stack
+				development on the side.
+			</p>
+			<div class="btn-row">
+				<a
+					class="btn btn-primary"
+					href="https://www.linkedin.com/in/poonamlama253/"
+					>LinkedIn</a
+				>
+				<a class="btn btn-secondary" href="https://github.com/poonamlama"
+					>GitHub</a
+				>
+				<a class="btn btn-secondary" href="mailto:poonamlama253@gmail.com"
+					>Email</a
+				>
+			</div>
+		</section>
+
+		<section id="about">
+			<h2 class="section-label">About</h2>
+			<p>
+				I'm building hands-on experience in application security testing, moving
+				from a background in
+				<span class="placeholder">Web development</span> into security-focused
+				work: vulnerability discovery, triage, and remediation across both
+				traditional web applications and LLM-integrated systems. My recent
+				projects cover DAST, SAST, and SCA scanning in automated CI/CD
+				pipelines, manual vulnerability write-ups, and red-teaming against GenAI
+				applications using the OWASP Top 10 for LLM Applications as a framework.
+				I'm also picking up full-stack development (the MERN stack) on the side,
+				with an eye toward building tools that connect both interests.
+			</p>
+		</section>
+
+		<section id="projects">
+			<h2 class="section-label">Projects</h2>
+			<div class="project-grid">
+				<article class="project">
+					<div>
+						<h3>AppSec Pipeline: OWASP Juice Shop</h3>
+						<p class="subtitle">
+							Automated DAST, SAST &amp; SCA security pipeline
+						</p>
+					</div>
+					<p class="desc">
+						A CI/CD pipeline that runs OWASP ZAP (DAST), Semgrep (SAST), and
+						Trivy (SCA) against a deliberately vulnerable app on every push,
+						plus three manually verified vulnerability write-ups (SQL injection,
+						missing CSP header, hardcoded JWT secret) and a Python script that
+						triages raw scan output by OWASP/CWE category.
+					</p>
+					<div class="tags">
+						<span class="tag">OWASP ZAP</span>
+						<span class="tag">Semgrep</span>
+						<span class="tag">Trivy</span>
+						<span class="tag">GitHub Actions</span>
+						<span class="tag">Python</span>
+					</div>
+					<a
+						class="link"
+						href="https://github.com/poonamlama/appsec-pipeline-juice-shop"
+						>View repository →</a
+					>
+				</article>
+
+				<article class="project">
+					<div>
+						<h3>LLM / AI Security Testing</h3>
+						<p class="subtitle">Prompt injection &amp; jailbreak red-teaming</p>
+					</div>
+					<p class="desc">
+						Hands-on red-teaming against sanctioned GenAI practice targets
+						(Lakera's Agent Breaker), covering direct prompt injection for
+						system prompt extraction, jailbreak resistance testing, and
+						indirect/stored prompt injection via memory logs — mapped to the
+						OWASP Top 10 for LLM Applications.
+					</p>
+					<div class="tags">
+						<span class="tag">Prompt Injection</span>
+						<span class="tag">OWASP LLM Top 10</span>
+						<span class="tag">Red-teaming</span>
+						<span class="tag">Lakera Agent Breaker</span>
+					</div>
+					<a
+						class="link"
+						href="https://github.com/poonamlama/appsec-pipeline-juice-shop/tree/main/llm-security"
+						>View findings →</a
+					>
+				</article>
+			</div>
+		</section>
+
+		<section id="toolbox">
+			<h2 class="section-label">Tools &amp; Skills</h2>
+			<div class="pill-row">
+				<span class="pill">OWASP ZAP</span>
+				<span class="pill">Semgrep</span>
+				<span class="pill">Trivy</span>
+				<span class="pill">Postman</span>
+				<span class="pill">Python</span>
+				<span class="pill">GitHub Actions</span>
+				<span class="pill">Jira</span>
+				<span class="pill">Git / GitLab</span>
+				<span class="pill">OWASP Top 10</span>
+				<span class="pill">OWASP LLM Top 10</span>
+				<span class="pill">CWE Top 25</span>
+				<span class="pill">MERN (learning)</span>
+			</div>
+		</section>
+
+		<footer id="contact">
+			<div>
+				<h2>Let's connect</h2>
+				<p>
+					Open to application security roles — happy to walk through any of the
+					findings above.
+				</p>
+			</div>
+			<div class="contact-links">
+				<a href="https://www.linkedin.com/in/poonamlama253/">LinkedIn</a>
+				<a href="https://github.com/poonamlama">GitHub</a>
+				<a href="mailto:poonamlama253@gmail.com">poonamlama253@gmail.com</a>
+			</div>
+		</footer>
+	</body>
+</html>
